@@ -6,7 +6,13 @@
 //
 
 struct Contacs {
-    let name: String
-    let phoneNumber: String
-    let image: String
+    var name: String
+    var phoneNumber: String
+    var image: String
+    
+    init() {
+        name = ""
+        phoneNumber = ""
+        image = ""
+    }
 }

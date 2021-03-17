@@ -19,10 +19,11 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        contacts.append(Contacs(name: "Jonatan Mendez", phoneNumber: "8093310918", image: ""))
-        contacts.append(Contacs(name: "PEdro", phoneNumber: "8093310918", image: ""))
-        contacts.append(Contacs(name: "EL loco", phoneNumber: "8093310918", image: ""))
-        contacts.append(Contacs(name: "Jua ", phoneNumber: "8093310918", image: ""))
+        contacts =  Session.shared.contacs
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     @IBAction func backBtn(_ sender: Any) {
