@@ -7,6 +7,6 @@
 
 struct Contacs {
     let name: String
-    let phoneNumber: Int
+    let phoneNumber: String
     let image: String
 }
