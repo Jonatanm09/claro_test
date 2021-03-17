@@ -12,4 +12,8 @@ class AddContacsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+
+    }
 }

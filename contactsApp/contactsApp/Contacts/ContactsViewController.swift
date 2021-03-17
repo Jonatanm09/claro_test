@@ -26,7 +26,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func backBtn(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
 
     }
     
