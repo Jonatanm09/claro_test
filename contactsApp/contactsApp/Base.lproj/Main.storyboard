@@ -221,7 +221,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mis Contactos" id="UR0-U1-b5u">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.backward" catalog="system" id="TLS-Tb-tuY">
+                        <barButtonItem key="leftBarButtonItem" image="arrow.backward" catalog="system" id="TLS-Tb-tuY">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="backBtn:" destination="vwg-Fs-7rS" id="9cU-8m-z9W"/>
                             </connections>
@@ -263,18 +264,19 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juG-bc-00N">
-                                        <rect key="frame" x="14" y="19" width="48" height="30"/>
+                                        <rect key="frame" x="14" y="19" width="47.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancelBtnPressed:" destination="17j-8I-yye" eventType="touchUpInside" id="4jY-ok-oDz"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nuevo Contacto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNv-V4-1Ix">
-                                        <rect key="frame" x="146" y="12" width="123.5" height="37"/>
+                                        <rect key="frame" x="145.5" y="12" width="124" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="FcC-ac-RFz"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -424,8 +426,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="background" width="720" height="1280"/>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="person.crop.square.fill" catalog="system" width="128" height="114"/>
         <image name="plus" catalog="system" width="128" height="113"/>
