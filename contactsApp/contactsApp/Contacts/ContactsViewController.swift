@@ -25,14 +25,39 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         contacts =  Session.shared.contacs
         filteredContacs = contacts
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        contacts =  Session.shared.contacs
+        filteredContacs = contacts
+        self.view.setNeedsLayout()
         tableView.reloadData()
     }
-
+    
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-
+    }
+    @IBAction func edtingMode(_ sender: Any) {
+        isEditing = !isEditing
+    }
+    
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            var items = [Contacs]()
+            for indexPath in selectedRows  {
+                items.append(filteredContacs[indexPath.row])
+            }
+            for item in items {
+                if let index = filteredContacs.firstIndex(where: { (contact) -> Bool in
+                    contact.name == item.name
+                }) {
+                    filteredContacs.remove(at: index)
+                }
+            }
+            tableView.beginUpdates()
+            tableView.deleteRows(at: selectedRows, with: .automatic)
+            tableView.endUpdates()
+        }
     }
     
     @IBAction func addContactsBtnPressed(_ sender: Any) {
@@ -48,16 +73,22 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         let contact = filteredContacs[indexPath.row]
         cell.nameLbl.text = contact.name
         cell.phoneLbl.text = String(contact.phoneNumber)
+        if(contact.image != nil){
+            cell.contactImg.image = UIImage(data: contact.image)
+        }
+        else{
+            cell.contactImg.image = UIImage(named: "person.crop.square.fill")
+        }
         
         return cell
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        
         filteredContacs = searchText.isEmpty ? contacts : contacts.filter({(dataString: Contacs) -> Bool in
             return dataString.name.range(of: searchText, options: .caseInsensitive) != nil
         })
-
+        
         tableView.reloadData()
     }
     

@@ -22,11 +22,18 @@ class AddContacsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction func cancelBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         
     }
+    
     @IBAction func addImgBtnPressed(_ sender: Any) {
+        AF.request("https://picsum.photos/seed/picsum/250/150").responseData{ response in
+            if let data = response.value {
+                self.imgView.image = UIImage(data: data)
+            }
+        }
     }
     
     
