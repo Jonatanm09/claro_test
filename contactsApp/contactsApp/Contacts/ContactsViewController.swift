@@ -73,8 +73,8 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         let contact = filteredContacs[indexPath.row]
         cell.nameLbl.text = contact.name
         cell.phoneLbl.text = String(contact.phoneNumber)
-        if(contact.image != nil){
-            cell.contactImg.image = UIImage(data: contact.image)
+        if(!contact.image.isEmpty){
+            cell.contactImg.image = UIImage(contentsOfFile: contact.image)
         }
         else{
             cell.contactImg.image = UIImage(named: "person.crop.square.fill")

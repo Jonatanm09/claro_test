@@ -18,6 +18,8 @@ class AddContacsViewController: UIViewController {
     @IBOutlet weak var nameTxtField: UITextField!
     
     var contact: Contacs = Contacs()
+    var url: String = "https://picsum.photos/seed/picsum/250/150"
+    var imageFilePath: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +31,28 @@ class AddContacsViewController: UIViewController {
     }
     
     @IBAction func addImgBtnPressed(_ sender: Any) {
-        AF.request("https://picsum.photos/seed/picsum/250/150").responseData{ response in
-            if let data = response.value {
-                self.imgView.image = UIImage(data: data)
+        DispatchQueue.main.async {
+            self.getImageFromApi()
+        }
+    }
+    
+    private func getImageFromApi(){
+        var image = UIImage()
+        ProgressHUD.show()
+        let destination: DownloadRequest.Destination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent("image.png")
+            
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        AF.download(url, to: destination).response { response in
+            if response.error == nil, let imagePath = response.fileURL?.path {
+                self.imageFilePath = imagePath
+                image = UIImage(contentsOfFile: imagePath)!
+                self.imgView.image = image
             }
+        ProgressHUD.dismiss()
         }
     }
     
@@ -51,6 +71,7 @@ class AddContacsViewController: UIViewController {
         
         contact.name = self.nameTxtField.text! + " " + self.lastNameTextField.text!
         contact.phoneNumber = self.phoneTextField.text!
+        contact.image = imageFilePath
         Session.shared.contacs.append(contact)
         ProgressHUD.dismiss()
         self.dismiss(animated: true, completion: nil)

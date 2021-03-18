@@ -8,11 +8,11 @@ import UIKit
 struct Contacs {
     var name: String
     var phoneNumber: String
-    var image: Data
+    var image: String
     
     init() {
         name = ""
         phoneNumber = ""
-        image = Data()
+        image = ""
     }
 }
