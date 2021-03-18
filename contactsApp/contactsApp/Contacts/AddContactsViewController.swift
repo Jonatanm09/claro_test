@@ -18,7 +18,7 @@ class AddContacsViewController: UIViewController {
     @IBOutlet weak var nameTxtField: UITextField!
     //MARK: Vars
     var contact: Contacs = Contacs()
-    var url: String = "https://picsum.photos/seed/picsum/250/150"
+    var url: String = "https://picsum.photos/250/150"
     var imageFilePath: String = ""
     
     override func viewDidLoad() {
@@ -37,10 +37,11 @@ class AddContacsViewController: UIViewController {
     
     private func getImageFromApi(){
         var image = UIImage()
+        let randomInt = Int.random(in: 1..<100)
         ProgressHUD.show()
         let destination: DownloadRequest.Destination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent("image.png")
+            let fileURL = documentsURL.appendingPathComponent("image\(randomInt).png")
             
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }

@@ -38,10 +38,13 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    //MARK: NOT IMPLEMENTED
     @IBAction func edtingMode(_ sender: Any) {
         isEditing = !isEditing
     }
     
+    //MARK: NOT IMPLEMENTED
     @IBAction func deleteBtnPressed(_ sender: Any) {
         if let selectedRows = tableView.indexPathsForSelectedRows {
             var items = [Contacs]()
@@ -69,6 +72,12 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         filteredContacs.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let index = tableView.indexPathForSelectedRow{
+            tableView.deselectRow(at: index, animated: true)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)  as! ContactsTableViewCell
         let contact = filteredContacs[indexPath.row]
@@ -86,10 +95,10 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredContacs = searchText.isEmpty ? contacts : contacts.filter({(dataString: Contacs) -> Bool in
-            return dataString.name.range(of: searchText, options: .caseInsensitive) != nil
-        })
-        
+        filteredContacs = searchText.isEmpty ? contacts :
+            contacts.filter({(contactSearch: Contacs) -> Bool in
+                return contactSearch.name.range(of: searchText, options: .caseInsensitive) != nil
+            })
         tableView.reloadData()
     }
     
