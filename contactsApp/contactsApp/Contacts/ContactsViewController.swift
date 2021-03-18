@@ -13,6 +13,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!
+    
     //MARK: Vars
     var contacts: [Contacs] = []
     var filteredContacs: [Contacs]!
@@ -77,7 +78,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.contactImg.image = UIImage(contentsOfFile: contact.image)
         }
         else{
-            cell.contactImg.image = UIImage(named: "person.crop.square.fill")
+            cell.contactImg.image = UIImage(named: "ios-contacts")
         }
         
         return cell

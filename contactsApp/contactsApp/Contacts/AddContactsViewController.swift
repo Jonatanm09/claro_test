@@ -11,12 +11,12 @@ import ProgressHUD
 
 class AddContacsViewController: UIViewController {
     
-    
+    //MARK; OULETS
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var nameTxtField: UITextField!
-    
+    //MARK: Vars
     var contact: Contacs = Contacs()
     var url: String = "https://picsum.photos/seed/picsum/250/150"
     var imageFilePath: String = ""
@@ -27,7 +27,6 @@ class AddContacsViewController: UIViewController {
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func addImgBtnPressed(_ sender: Any) {
@@ -52,7 +51,7 @@ class AddContacsViewController: UIViewController {
                 image = UIImage(contentsOfFile: imagePath)!
                 self.imgView.image = image
             }
-        ProgressHUD.dismiss()
+            ProgressHUD.dismiss()
         }
     }
     
